@@ -1,0 +1,185 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f7f7f7;
+}
+
+/* 顶部导航样式 */
+.chat-header {
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  padding: 0 12px;
+  height: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.header-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-btn {
+  font-size: 16px;
+  color: #007AFF;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 500;
+  color: #333;
+}
+
+.more-btn {
+  font-size: 20px;
+  color: #333;
+  transform: rotate(90deg);
+}
+
+/* 聊天列表样式 */
+.chat-list {
+  flex: 1;
+  /* padding: 10px 12px; */
+  margin: 44px 0 50px 0;
+}
+
+.loading-more {
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #999;
+  margin: 0 2px;
+  display: inline-block;
+  animation: loading 1.4s infinite ease-in-out both;
+}
+
+.loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loading {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+
+/* 消息样式 */
+.message-item {
+  margin-bottom: 16px;
+}
+
+.time {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  margin: 8px 0;
+}
+
+.message-content {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 8px;
+}
+
+.avatar-container {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 12px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+/* 他人消息样式 */
+.other .bubble {
+  background: #ffffff;
+  margin-right: 52px;
+  border-radius: 0 8px 8px 8px;
+}
+
+/* 自己消息样式 */
+.self .message-content {
+  /* flex-direction: row-reverse; */
+  justify-content: flex-end;
+}
+
+.self .bubble {
+  background: #95EC69;
+  margin-left: 52px;
+  border-radius: 8px 0 8px 8px;
+}
+
+/* 底部输入区域样式 */
+.input-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f7f7f7;
+  padding: 8px 12px;
+  border-top: 1px solid #eee;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.voice-btn, .emoji-btn, .more-btn {
+  font-size: 24px;
+  padding: 0 8px;
+  color: #999;
+}
+
+.text-input {
+  flex: 1;
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  margin: 0 8px;
+}
+
+.send-btn {
+  color: #007AFF;
+  font-size: 16px;
+  padding: 0 8px;
+} 

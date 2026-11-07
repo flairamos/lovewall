@@ -1,0 +1,79 @@
+<view class="sale-container">
+  <!-- 导航栏 -->
+  <view class="navigation">
+    <view class="navigation-item">
+      <view class="select-tab" bindtap="selected" data-type="1">全部</view>
+      <view class='{{select==1?"select-tab-bootom":""}}'></view>
+    </view>
+    <view class="navigation-item">
+      <view class="select-tab" bindtap="selected" data-type="2">排行榜</view>
+      <view class='{{select==2?"select-tab-bootom":""}}'></view>
+    </view>
+    <view class="navigation-item">
+      <view class="select-tab" bindtap="selected" data-type="3">关注</view>
+      <view class='{{select==3?"select-tab-bootom":""}}'></view>
+    </view>
+  </view>
+
+  <view class='container'>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='item' wx:for="{{leftList}}" data-objid='{{item.id}}' wx:key="id">
+          <swiper indicator-dots="{{item.photos.length > 1}}">
+            <swiper-item wx:key="index" wx:for="{{item.photos}}">
+              <image class='main-pic' mode='widthFix' src='{{item}}'></image>
+            </swiper-item>
+          </swiper>
+          <view class='footer'>
+            <view class='footer-item'>
+              <view class='user-info' catchtap="openUserInfo" data-id="{{item.poster.id}}">
+                <image class='icon avatar' src='{{item.poster.avatar}}'></image>
+                <view class="user-name">{{item.poster.name}}</view>
+              </view>
+              <view class="introduce">{{item.title}}</view>
+              <view class='share-icon'>
+                <image class="comment-icon" bind:tap="praise" data-objid="{{item.id}}" src="/image/ablum/ablum-love.png"></image>
+                <view>{{item.like_num}}</view>
+                <!-- 气球容器 -->
+                <view wx:for="{{balloons}}" wx:key="id" class="balloon" 
+                      style="left: {{item.x}}px; top: {{item.y}}px; background-color: {{item.color}};">
+                </view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='content-right'>
+        <view class='item' wx:for="{{rightList}}" wx:key="id" data-objid='{{item.id}}'>
+          <swiper indicator-dots="{{ item.photos.length > 1}}">
+            <swiper-item wx:key="index" wx:for="{{item.photos}}">
+              <image class='main-pic' mode='widthFix' src='{{item}}'></image>
+            </swiper-item>
+          </swiper>
+          <view class='footer'>
+            <view class='footer-item'>
+              <view class='user-info' catchtap="openUserInfo" data-id="{{item.poster.id}}">
+                <image class='icon avatar' style='width: 40rpx;' src='{{item.poster.avatar}}'></image>
+                <view class="user-name">{{item.poster.name}}</view>
+              </view>
+              <view class="introduce">{{item.title}}</view>
+              <view class='share-icon'>
+                <image class="comment-icon" bind:tap="praise"  data-objid="{{item.id}}" src="/image/ablum/ablum-love.png"></image>
+                <view>{{item.like_num}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--添加按钮-->
+<view class='post-container'>
+  <view class='post'>
+    <image src='/image/index/index-add.png' bindtap='post'></image>
+  </view>
+</view>

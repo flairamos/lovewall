@@ -1,0 +1,210 @@
+.edit-profile-container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部背景 */
+.header-bg {
+  height: 360rpx;
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f8f8f8" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* 头像编辑区域 */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -120rpx;
+  margin-bottom: 40rpx;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 90rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 90rpx;
+  border: 8rpx solid #fff;
+}
+
+.avatar-edit-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 56rpx;
+  height: 56rpx;
+  background: #6e45e2;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4rpx solid #fff;
+}
+
+.avatar-edit-icon image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.avatar-tip {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 编辑区域通用样式 */
+.edit-section {
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 30rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.section-title::before {
+  content: '';
+  width: 6rpx;
+  height: 32rpx;
+  background: #6e45e2;
+  margin-right: 16rpx;
+  border-radius: 3rpx;
+}
+
+/* 输入框组样式 */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.input-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #f8f8f8;
+  border-radius: 16rpx;
+}
+
+.item-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.textarea {
+  flex: 1;
+  height: 120rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.word-count {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 菜单列表样式 */
+.menu-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-item-left text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.arrow-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 按钮组样式 */
+.button-group {
+  margin: 60rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+  color: #fff;
+  border: none;
+  padding: 24rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  box-shadow: 0 8rpx 20rpx rgba(110, 69, 226, 0.3);
+}
+
+.save-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 10rpx rgba(110, 69, 226, 0.3);
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #666;
+  border: 2rpx solid #eee;
+  padding: 24rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+} 

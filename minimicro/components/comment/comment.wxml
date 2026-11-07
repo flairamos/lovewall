@@ -1,0 +1,107 @@
+<!-- 评论区容器 -->
+<view class="comment-section show" catch:tap="preventBubble">
+  <!-- 顶部标题栏 -->
+  <view class="comment-header">
+    <text class="title">评论</text>
+    <view class="close-btn" bind:tap="hideCommentSection">×</view>
+  </view>
+
+  <!-- 评论列表区域 -->
+  <scroll-view scroll-y class="comment-list" bindscrolltolower="onLoadMore" refresher-enabled="{{true}}" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}">
+    <block wx:for="{{comments}}" wx:key="id">
+      <view class="comment-item">
+        <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+        <view class="comment-content">
+          <view bind:tap="openReply" data-item="{{item}}">
+            <view class="user-info">
+              <text class="username">{{item.name}}</text>
+              <view class="auth-badge" wx:if="{{item.authentication}}">
+                <text class="auth-text">认证</text>
+              </view>
+            </view>
+            <view class="content">{{item.content}}</view>
+            <!-- 图片展示区 -->
+            <view class="photo-list" wx:if="{{item.photos && item.photos.length > 0}}">
+              <image wx:for="{{item.photos}}" wx:key="*this" wx:for-item="photo" src="{{photo}}" mode="aspectFill" class="content-image" bind:tap="previewImage" data-urls="{{item.photos}}" data-current="{{photo}}" />
+            </view>
+            <view class="comment-footer">
+              <text class="time">{{item.created_at}}</text>
+              <view class="action-buttons">
+                <view class="like-btn {{item.isLiked ? 'liked' : ''}}" bind:tap="toggleLike" data-id="{{item.id}}">
+                  <text class="like-count" wx:if="{{item.liker.length > 0}}">{{item.liker.length}}</text>
+                  👍
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="comment-item" wx:for="{{item.flatComments}}" wx:for-item="child" wx:key="index" bind:tap="openReply" data-item="{{child}}">
+            <image class="avatar" src="{{child.avatar}}" mode="aspectFill" />
+            <view class="comment-content">
+              <view class="user-info">
+                <text class="username">{{child.parentId == item.id?child.name:child.name+'回复'+child.recoverName}}</text>
+                <view class="auth-badge" wx:if="{{child.authentication}}">
+                  <text class="auth-text">认证</text>
+                </view>
+              </view>
+              <view class="content">{{child.content}}</view>
+              <!-- 图片展示区 -->
+              <view class="photo-list" wx:if="{{child.photos && child.photos.length > 0}}" wx:for="{{child.photos}}" wx:key="index">
+                <image src="{{item}}" mode="aspectFill" class="content-image" bind:tap="previewImage" data-urls="{{item}}" data-current="{{item}}" />
+              </view>
+              <view class="comment-footer">
+                <text class="time">{{child.created_at}}</text>
+                <view class="action-buttons">
+                  <view class="like-btn {{child.isLiked ? 'liked' : ''}}" bind:tap="toggleLike" data-id="{{child.id}}">
+                    <text class="like-count" wx:if="{{child.liker.length > 0}}">{{child.liker.length}}</text>
+                    👍
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 底部评论输入区域 -->
+  <!-- <view class="comment-input-section">
+    <view class="input-wrapper">
+      <input class="comment-input" placeholder="{{isReply ? '@ ' + replyObj.name : '写评论...'}}" value="{{inputValue}}" bindconfirm="sendReply" bindinput="bindKeyInput" adjust-position="{{true}}" cursor-spacing="20" focus="{{isReply}}" />
+      <view class="emoji-btn" bind:tap="toggleEmojiPanel">😊</view>
+      <view class="photo-btn" bind:tap="chooseImage">🖼️</view>
+    </view>
+    <button class="send-btn" bind:tap="submitComment">发送</button>
+  </view> -->
+
+  <!-- 底部评论输入区域 -->
+
+  <view class="comment-input-section">
+    <view class="input-wrapper {{hasImage? 'with-image' : ''}}" style="height: {{inputHeight}}rpx;">
+      <view class="input-content">
+        <textarea class="comment-input" placeholder="{{isReply? '@'+ replyObj.name : '写评论...'}}" value="{{inputValue}}" bindconfirm="sendReply" bindinput="bindKeyInput" adjust-position="{{true}}" cursor-spacing="20" focus="{{isReply}}" maxlength="-1" auto-height="{{false}}" show-confirm-bar="{{false}}" style="height: {{inputHeight}}rpx;" />
+      </view>
+      <!-- <view class="photo-btn" catchtap="chooseImage" wx:if="{{!hasImage}}">🖼️</view> -->
+    </view>
+    <button class="send-btn" bind:tap="submitComment">发送</button>
+  </view>
+
+  <view class="choose-image-wrap">
+    <view class="add-image" catchtap="chooseImage" wx:if="{{!hasImage}}">+</view>
+    <view class="image-preview" wx:if="{{hasImage}}">
+      <image src="{{tmpImgPath}}" mode="aspectFill" bindtap="previewImage" />
+      <view class="delete-image" catchtap="deleteImage">×</view>
+    </view>
+  </view>
+
+  <!-- 表情选择面板 -->
+  <view class="emoji-panel" hidden="{{!showEmojiPanel}}">
+    <view class="emoji-list">
+      <text wx:for="{{emojiList}}" wx:key="*this" class="emoji-item" bind:tap="selectEmoji" data-emoji="{{item}}">{{item}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 遮罩层 -->
+<view class="mask show" bind:tap="hideCommentSection"></view>

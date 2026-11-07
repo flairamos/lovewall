@@ -1,0 +1,91 @@
+<view class="market-container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <image class="search-icon" src="/image/market/search.png"></image>
+      <input class="search-input" placeholder="搜索二手商品" bindinput="onSearch"/>
+    </view>
+    <view class="publish-btn" bindtap="navigateToPublish">
+      <image src="/image/market/publish.png"></image>
+      <text>发布</text>
+    </view>
+  </view>
+
+  <!-- 分类标签 -->
+  <scroll-view class="category-scroll" scroll-x="true">
+    <view class="category-list">
+      <view class="category-item {{currentCategory === 'all' ? 'active' : ''}}" 
+            bindtap="switchCategory" data-category="all">
+        <text>全部</text>
+      </view>
+      <view class="category-item {{currentCategory === 'books' ? 'active' : ''}}" 
+            bindtap="switchCategory" data-category="books">
+        <text>教材书籍</text>
+      </view>
+      <view class="category-item {{currentCategory === 'digital' ? 'active' : ''}}" 
+            bindtap="switchCategory" data-category="digital">
+        <text>数码产品</text>
+      </view>
+      <view class="category-item {{currentCategory === 'clothes' ? 'active' : ''}}" 
+            bindtap="switchCategory" data-category="clothes">
+        <text>服饰装备</text>
+      </view>
+      <view class="category-item {{currentCategory === 'daily' ? 'active' : ''}}" 
+            bindtap="switchCategory" data-category="daily">
+        <text>生活用品</text>
+      </view>
+      <view class="category-item {{currentCategory === 'others' ? 'active' : ''}}" 
+            bindtap="switchCategory" data-category="others">
+        <text>其他</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 商品列表 -->
+  <scroll-view class="goods-list" scroll-y="true" bindscrolltolower="loadMore">
+    <view class="goods-item" wx:for="{{goodsList}}" wx:key="id" bindtap="viewGoodsDetail" data-id="{{item.id}}">
+      <!-- 商品图片 -->
+      <view class="goods-image-wrap">
+        <image class="goods-image" src="{{item.images}}" mode="aspectFill"></image>
+        <view class="goods-status" wx:if="{{item.status === 'sold'}}">已售出</view>
+      </view>
+      
+      <!-- 商品信息 -->
+      <view class="goods-info">
+        <view class="goods-title">{{item.title}}</view>
+        <view class="goods-desc">{{item.description}}</view>
+        <view class="goods-meta">
+          <view class="goods-category">
+            <image class="category-icon" src="/image/market/tag.png"></image>
+            <text>{{item.category}}</text>
+          </view>
+          <view class="goods-time">{{item.publish_time}}</view>
+        </view>
+        
+        <!-- 价格和用户信息 -->
+        <view class="goods-bottom">
+          <view class="price-wrap">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+            <text class="original-price" wx:if="{{item.original_price}}">¥{{item.original_price}}</text>
+          </view>
+          <view class="seller-info">
+            <image class="seller-avatar" src="{{item.seller.avatar}}" mode="aspectFill"></image>
+            <text class="seller-name">{{item.seller.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="loading" wx:if="{{isLoading}}">
+      <view class="loading-spinner"></view>
+      <text>加载中...</text>
+    </view>
+  </scroll-view>
+
+  <!-- 悬浮发布按钮 -->
+  <view class="float-publish-btn" bindtap="navigateToPublish">
+    <image src="/image/market/plus.png"></image>
+  </view>
+</view> 

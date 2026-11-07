@@ -1,0 +1,310 @@
+.publish-container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 导航栏样式 */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  padding: 0 30rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.nav-left, .nav-right {
+  font-size: 28rpx;
+  color: #666;
+  padding: 20rpx;
+}
+
+.nav-right.active {
+  color: #6e45e2;
+  font-weight: 500;
+}
+
+.nav-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 图片上传区域样式 */
+.upload-section {
+  margin-top: 88rpx;
+  padding: 30rpx;
+  background: #fff;
+}
+
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.goods-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.upload-btn {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  border: 2rpx dashed #ddd;
+}
+
+.upload-btn image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.upload-btn text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.upload-tip {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 16rpx;
+}
+
+/* 表单区域样式 */
+.form-section {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 0 30rpx;
+}
+
+.form-item {
+  position: relative;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.title-input {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.desc-input {
+  width: 100%;
+  height: 200rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.word-count {
+  position: absolute;
+  right: 0;
+  bottom: 30rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.price-item {
+  display: flex;
+  align-items: center;
+}
+
+.price-symbol {
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 8rpx;
+}
+
+.price-input {
+  width: 200rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.original-price-wrap {
+  display: flex;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.original-price-input {
+  width: 160rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.toggle-original-price {
+  display: flex;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.toggle-original-price image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.toggle-original-price text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.picker-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picker-content {
+  display: flex;
+  align-items: center;
+}
+
+.item-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+}
+
+.arrow-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 联系方式样式 */
+.contact-section {
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background: #fff;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 30rpx;
+}
+
+.section-title text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 12rpx;
+  font-weight: normal;
+}
+
+.contact-options {
+  display: flex;
+  gap: 30rpx;
+}
+
+.contact-item {
+  flex: 1;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.contact-item.active {
+  background: rgba(110, 69, 226, 0.1);
+}
+
+.contact-item image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.contact-item text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.contact-item.active text {
+  color: #6e45e2;
+}
+
+/* 提交按钮样式 */
+.submit-section {
+  padding: 40rpx 30rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddd;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  transition: all 0.3s;
+}
+
+.submit-btn.active {
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+  box-shadow: 0 8rpx 20rpx rgba(110, 69, 226, 0.3);
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+} 

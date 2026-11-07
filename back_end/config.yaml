@@ -1,0 +1,57 @@
+# web config
+server:
+    port: 8000
+    qrcode_release: trial  # 二维码版本 要打开的小程序版本。正式版为 "release"，体验版为 "trial"，开发版为 "develop"
+
+
+# 数据库配置
+database:
+    driver: postgres
+    user: postgres
+    password: postgres
+    addr: 127.0.0.1    
+    port: 5432
+    dbname: lovewall
+    zone: Asia/Shanghai
+
+# jwt signature
+jwt:
+    key: autoum
+
+
+filebrowser:
+    url: http://127.0.0.1:8080
+    username: admin
+    password: 123456
+    bucket: lovewall   # 不要/
+    share_id: xxxxxxxxxxxx   # FileBrowser 公开分享 ID
+
+
+# 静态资源代理防止暴露FileBrowser端口
+proxy:
+    url: http://127.0.0.1:8080
+
+# redis
+redis:
+    host: 127.0.0.1:6379
+    password: redis
+    database: 8
+
+
+# email 
+email:
+    host: smtp.qq.com
+    port: 587
+    name: example@qq.com
+    password: xxxxxxxxxxxx  # sftp授权码
+
+
+# wechat_miniprogram
+miniprogram:
+    appid: xxxxxxxxxxxxxxxxxxx
+    appsecret: xxxxxxxxxxxxxxxxxxxxxx
+    mchid: xxxxxxxxxxxxxxxxxxxxxx
+    mchCertificateSerialNumber: xxxxxxxxxxxxxxxxxxx
+    mchAPIv3Key: xxxxxxxxxxxxxxxxxxxx
+
+

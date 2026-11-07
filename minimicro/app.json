@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/home/post/post",
+    "pages/ablum/index/index",
+    "pages/ablum/post/post",
+    "pages/personal/profile/profile",
+    "pages/personal/edit/edit",
+    "pages/personal/login/login",
+    "pages/personal/logout/logout",
+    "pages/personal/user/user",
+    "pages/message/index/index",
+    "pages/message/chat/chat",
+    "pages/market/index/index",
+    "pages/market/post/post"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "星咔",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于当前位置的定位"
+    }
+  },
+  "requiredPrivateInfos": [
+    "chooseLocation"
+  ],
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#fbc346",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index/index",
+        "iconPath": "image/nav/nav-love.png",
+        "selectedIconPath": "image/nav/nav-love-click.png",
+        "text": "星墙"
+      },
+      {
+        "pagePath": "pages/ablum/index/index",
+        "iconPath": "image/nav/nav-camera.png",
+        "selectedIconPath": "image/nav/nav-camera-click.png",
+        "text": "影集"
+      },
+      {
+        "pagePath": "pages/market/index/index",
+        "iconPath": "image/nav/nav-market.png",
+        "selectedIconPath": "image/nav/nav-market-click.png",
+        "text": "市场"
+      },
+      {
+        "pagePath": "pages/message/index/index",
+        "iconPath": "image/nav/nav-email.png",
+        "selectedIconPath": "image/nav/nav-email-click.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/personal/profile/profile",
+        "iconPath": "image/nav/nav-user.png",
+        "selectedIconPath": "image/nav/nav-user-click.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

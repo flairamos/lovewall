@@ -1,0 +1,194 @@
+.message-container {
+  background: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 8px 12px;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.search-icon {
+  color: #999;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.plus-icon {
+  color: #333;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  font-size: 14px;
+  padding: 0;
+}
+
+.starred-friends {
+  padding: 12px 0;
+  background: #ffffff;
+  border-bottom: 1px solid #f5f5f5;
+  width: 100%;
+}
+
+.friend-list {
+  display: flex;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.friend-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.friend-item:last-child {
+  margin-right: 12px;
+}
+
+.friend-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
+.friend-name {
+  font-size: 12px;
+  color: #333;
+  width: 52px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.message-list {
+  padding: 0 12px;
+}
+
+.message-item {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+  align-items: center;
+}
+
+.avatar-container {
+  position: relative;
+  margin-right: 12px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 11px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-size: 16px;
+  color: #333;
+  font-weight: 400;
+}
+
+.time {
+  font-size: 12px;
+  color: #999;
+}
+
+.last-message {
+  font-size: 13px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.message-scroll {
+  flex: 1;
+  height: calc(100vh - 140px); /* 减去头部和星标朋友的高度 */
+}
+
+.loading-more {
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #999;
+  margin: 0 3px;
+  display: inline-block;
+  animation: loading 1.4s infinite ease-in-out both;
+}
+
+.loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loading {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 
+  40% { 
+    transform: scale(1.0);
+  }
+} 

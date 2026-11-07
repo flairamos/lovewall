@@ -1,0 +1,35 @@
+<view class="v1" style="height:{{clientHeight?clientHeight+'px':'auto'}}">
+ 
+ <!-- v2父容器  子view使用绝对布局 -->
+   <view class="v2">
+     <view class="dltext" style="width: 232rpx; height: 92rpx; display: block; box-sizing: border-box; left: 0rpx; top: -2rpx">注册</view>
+  
+     <!-- 手机号 -->
+     <view class="phoneCs">
+       <image src="/image/profile/login-user.png" class="ph"></image>
+       <input placeholder="请输入电子邮箱" type="number" bindinput="phone" />
+     </view>
+     <!-- 密码 -->
+     <!-- <view class=passwordCs">
+       <image src="/image/profile/login-pass.png" class="ps"></image>
+       <input placeholder="请输入验证码"  bindinput="code" />
+       <view class="code" bindtap="sendCode">发送验证码</view>
+     </view> -->
+
+     <view class="passwordCs">
+      <image src="/image/profile/login-pass.png" class="ps"></image>
+      <input placeholder="请输入验证码" bindinput="code" />
+      <view class="code {{countdown > 0 ? 'disabled' : ''}}" bindtap="{{countdown > 0 ? '' : 'sendCode'}}">
+        {{countdown > 0 ? countdown + '秒后重试' : '发送验证码'}}
+      </view>
+    </view>
+     <!-- 登录按钮 -->
+     <view class="denglu">
+       <button class="btn-dl" type="primary" bindtap="register">注册</button>
+     </view>
+   </view>
+   <view style="padding: 30%;">初始密码：123456</view>
+ </view>
+  
+
+

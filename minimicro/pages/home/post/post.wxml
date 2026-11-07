@@ -1,0 +1,57 @@
+<view class="container">
+  <!-- Title Input -->
+  <!-- <input class="title-input" placeholder="添加标题" bindinput="getTitle"/> -->
+  
+  <!-- Content Input -->
+  <textarea class="content-input" 
+            placeholder="添加正文" 
+            maxlength="1024"
+            value="{{copyData}}"
+            bindinput="getTextContent"/>
+
+  <!-- Image Upload Area -->
+  <view class="image-upload-area">
+    <view class="image-grid">
+      <block wx:for="{{uploadedImages}}" wx:key="index">
+        <view class="image-item">
+          <image src="{{item}}" mode="aspectFill"/>
+          <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+        </view>
+      </block>
+      <view class="add-image-btn" bindtap="chooseImage" wx:if="{{uploadedImages.length < 3}}">
+        <text class="plus-icon">+</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Action Buttons -->
+  <view class="action-buttons">
+    <view class="action-btn {{selectedAction === 'love' ? 'selected' : ''}}" 
+          bindtap="selectAction" 
+          data-type="love">
+      <text class="action-text"># 表白</text>
+    </view>
+    <view class="action-btn {{selectedAction === 'find' ? 'selected' : ''}}" 
+          bindtap="selectAction" 
+          data-type="find">
+      <text class="action-text"># 寻人寻物</text>
+    </view>
+    <view class="action-btn {{selectedAction === 'vote' ? 'selected' : ''}}" 
+          bindtap="selectAction" 
+          data-type="vote">
+      <text class="action-text"># 找搭子</text>
+    </view>
+    <view class="action-btn {{selectedAction === 'picture' ? 'selected' : ''}}" 
+          bindtap="selectAction" 
+          data-type="picture">
+      <text class="action-text"># 美拍</text>
+    </view>
+  </view>
+
+  <!-- Bottom Action Bar -->
+  <view class="bottom-bar">
+    <view class="post-btn" bindtap="post">
+      <text>发布</text>
+    </view>
+  </view>
+</view> 

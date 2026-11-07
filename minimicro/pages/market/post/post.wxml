@@ -1,0 +1,80 @@
+<view class="publish-container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="cancelPublish">取消</view>
+    <view class="nav-title">发布商品</view>
+    <view class="nav-right {{canSubmit ? 'active' : ''}}" bindtap="submitPublish">发布</view>
+  </view>
+
+  <!-- 图片上传区域 -->
+  <view class="upload-section">
+    <view class="image-container">
+      <block wx:if="{{images.length > 0}}">
+        <view class="image-wrapper">
+          <image class="goods-image" src="{{images}}" mode="aspectFit"></image>
+          <view class="delete-btn" bindtap="deleteImage">
+            <image src="/image/market/close.png"></image>
+          </view>
+        </view>
+      </block>
+      <view class="upload-btn" bindtap="chooseImage" wx:if="{{images.length === 0}}">
+        <image src="/image/market/camera.png"></image>
+        <text>拍摄照片</text>
+      </view>
+    </view>
+    <text class="upload-tip">请使用相机拍摄商品照片</text>
+  </view>
+
+
+
+  <!-- 商品信息表单 -->
+  <view class="form-section">
+    <view class="form-item">
+      <input class="title-input" placeholder="标题（必填）" maxlength="30" 
+             value="{{formData.title}}" bindinput="onTitleInput"/>
+      <text class="word-count">{{formData.title.length}}/30</text>
+    </view>
+
+    <view class="form-item">
+      <textarea class="desc-input" placeholder="描述一下你的商品，比如：新旧程度、入手渠道、转手原因等" 
+                maxlength="500" value="{{formData.description}}" bindinput="onDescInput"/>
+      <text class="word-count">{{formData.description.length}}/500</text>
+    </view>
+
+    <view class="form-item price-item">
+      <text class="price-symbol">¥</text>
+      <input class="price-input" type="digit" placeholder="价格（必填）" 
+             value="{{formData.price}}" bindinput="onPriceInput"/>
+      <view class="original-price-wrap" wx:if="{{showOriginalPrice}}">
+        <text class="price-symbol">¥</text>
+        <input class="original-price-input" type="digit" placeholder="原价（选填）" 
+               value="{{formData.original_price}}" bindinput="onOriginalPriceInput"/>
+      </view>
+      <view class="toggle-original-price" bindtap="toggleOriginalPrice">
+        <image src="/image/market/{{showOriginalPrice ? 'minus' : 'pluspost'}}.png"></image>
+        <text>原价</text>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" 
+              bindchange="onCategoryChange">
+        <view class="picker-item">
+          <view class="picker-content">
+            <image class="item-icon" src="/image/market/tag.png"></image>
+            <text>{{categoryIndex > -1 ? categories[categoryIndex] : '选择分类（必选）'}}</text>
+          </view>
+          <image class="arrow-icon" src="/image/market/arrow-right.png"></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="submit-section">
+    <button class="submit-btn {{canSubmit ? 'active' : ''}}" 
+            bindtap="submitPublish" disabled="{{!canSubmit}}">
+      发布商品
+    </button>
+  </view>
+</view> 

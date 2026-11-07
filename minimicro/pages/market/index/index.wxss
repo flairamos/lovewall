@@ -1,0 +1,285 @@
+.market-container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 搜索栏样式 */
+.search-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.search-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 72rpx;
+  background: #f5f5f5;
+  border-radius: 36rpx;
+  padding: 0 30rpx;
+  margin-right: 20rpx;
+}
+
+.search-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.publish-btn {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  background: #6e45e2;
+  border-radius: 32rpx;
+}
+
+.publish-btn image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.publish-btn text {
+  color: #fff;
+  font-size: 28rpx;
+}
+
+/* 分类标签样式 */
+.category-scroll {
+  position: fixed;
+  top: 112rpx;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+  white-space: nowrap;
+}
+
+.category-list {
+  display: inline-flex;
+  padding: 20rpx 30rpx;
+}
+
+.category-item {
+  padding: 12rpx 32rpx;
+  margin-right: 20rpx;
+  border-radius: 32rpx;
+  background: #f5f5f5;
+  transition: all 0.3s;
+}
+
+.category-item text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.category-item.active {
+  background: #6e45e2;
+}
+
+.category-item.active text {
+  color: #fff;
+}
+
+/* 商品列表样式 */
+.goods-list {
+  margin-top: 200rpx;
+  padding: 20rpx;
+}
+
+.goods-item {
+  margin-bottom: 20rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  overflow: hidden;
+  width: 95%;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.goods-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 400rpx;
+}
+
+.goods-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.goods-status {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 8rpx 20rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 24rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.goods-info {
+  padding: 20rpx;
+}
+
+.goods-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.goods-desc {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.goods-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.goods-category {
+  display: flex;
+  align-items: center;
+}
+
+.category-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+}
+
+.goods-category text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.goods-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.goods-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-wrap {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-symbol {
+  font-size: 24rpx;
+  color: #ff4d4f;
+  margin-right: 4rpx;
+}
+
+.price-value {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #ff4d4f;
+}
+
+.original-price {
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 12rpx;
+}
+
+.seller-info {
+  display: flex;
+  align-items: center;
+}
+
+.seller-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  margin-right: 12rpx;
+}
+
+.seller-name {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 加载更多样式 */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 0;
+}
+
+.loading-spinner {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #6e45e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 悬浮发布按钮 */
+.float-publish-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: calc(30rpx + env(safe-area-inset-bottom));
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(110, 69, 226, 0.3);
+}
+
+.float-publish-btn image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.float-publish-btn:active {
+  transform: scale(0.95);
+}

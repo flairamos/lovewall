@@ -1,0 +1,83 @@
+<view class="edit-profile-container">
+  <!-- 顶部背景 -->
+  <view class="header-bg">
+    <view class="wave-bg"></view>
+  </view>
+
+  <!-- 头像编辑区域 -->
+  <view class="avatar-section">
+    <view class="avatar-wrapper" bindtap="chooseAvatar">
+      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      <view class="avatar-edit-icon">
+        <image src="/image/profile/camera.png"></image>
+      </view>
+    </view>
+    <text class="avatar-tip">点击更换头像</text>
+  </view>
+
+  <!-- 基本信息编辑区域 -->
+  <view class="edit-section">
+    <view class="section-title">基本资料</view>
+    <view class="input-group">
+      <view class="input-item">
+        <image class="item-icon" src="/image/profile/edit-user.png"></image>
+        <input class="input" value="{{userInfo.name}}" placeholder="请输入昵称" bindinput="onNicknameChange" maxlength="10"/>
+      </view>
+      <view class="input-item">
+        <image class="item-icon" src="/image/profile/edit-sign.png"></image>
+        <textarea class="textarea" value="{{userInfo.background_img}}" placeholder="请输入个性签名" bindinput="onBioChange" maxlength="50"/>
+        <text class="word-count">{{bioLength}}/50</text>
+      </view>
+
+      <view class="input-item">
+        <image class="item-icon" src="/image/profile/edit-sex.png"></image>
+        <radio-group bindchange="radioChange">
+          <label class="radio-label" wx:for="{{items}}" wx:key="index">
+          <radio value="{{item.value}}" checked="{{item.checked}}">{{item.name}}</radio>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+  <!-- 账号安全区域 -->
+  <view class="edit-section">
+    <view class="section-title">账号安全</view>
+    <view class="menu-list">
+      <view class="menu-item">
+        <view class="menu-item-left">
+          <image class="item-icon" src="/image/profile/edit-password.png"></image>
+          <input password type="text" placeholder="请输入密码"/>
+        </view>
+        <image class="arrow-icon" src="/image/profile/edit-password-link.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他设置区域 -->
+  <view class="edit-section">
+    <view class="section-title">其他设置</view>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="navigateToAboutUs">
+        <view class="menu-item-left">
+          <image class="item-icon" src="/image/profile/about.png"></image>
+          <text>关于我们</text>
+        </view>
+        <image class="arrow-icon" src="/image/profile/about-link.png"></image>
+      </view>
+      <view class="menu-item" bindtap="navigateToContact">
+        <view class="menu-item-left">
+          <image class="item-icon" src="/image/profile/edit-email.png"></image>
+          <text>联系我们</text>
+        </view>
+        <image class="arrow-icon" src="/image/profile/edit-email-link.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="button-group">
+    <button class="save-btn" bindtap="saveProfile">保存修改</button>
+    <button class="cancel-btn" bindtap="cancelEdit">取消</button>
+  </view>
+</view> 

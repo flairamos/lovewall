@@ -1,0 +1,53 @@
+<!-- 消息页面 -->
+<view class="message-container">
+  <!-- 顶部搜索区域 -->
+  <view class="header">
+    <view class="search-box">
+      <text class="search-icon">搜索</text>
+      <input type="text" placeholder="" confirm-type="search" bindconfirm="onSearch"/>
+      <text class="plus-icon">+</text>
+    </view>
+  </view>
+
+  <!-- 星标朋友 -->
+  <scroll-view class="starred-friends" scroll-x="true">
+    <view class="friend-list">
+      <view class="friend-item" wx:for="{{starredFriends}}" wx:key="index">
+        <image class="friend-avatar" src="{{item.avatar}}" mode="aspectFill"  bindtap="onMessageTap" data-id="{{item.id}}"/>
+        <text class="friend-name">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 消息列表 -->
+  <scroll-view 
+    class="message-scroll"
+    scroll-y="true"
+    bindscrolltolower="onLoadMore"
+    lower-threshold="50"
+    enable-back-to-top="true">
+    <view class="message-list">
+      <view class="message-item" wx:for="{{messages}}" wx:key="id" bindtap="onMessageTap" data-id="{{item.id}}">
+        <view class="avatar-container">
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <view class="badge" wx:if="{{item.unreadCount > 0}}">{{item.unreadCount}}</view>
+        </view>
+        <view class="content">
+          <view class="top-line">
+            <text class="name">{{item.name}}</text>
+            <text class="time">{{item.time}}</text>
+          </view>
+          <view class="bottom-line">
+            <text class="last-message">{{item.lastMessage}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 加载更多提示 -->
+    <view class="loading-more" wx:if="{{isLoading}}">
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+    </view>
+  </scroll-view>
+</view> 

@@ -1,0 +1,173 @@
+<!--index.wxml-->
+<view class='wall-container'>
+  <!-- 导航栏 -->
+  <view class="navigation">
+    <view class="tabs">
+      <view class='{{select==0?"navigation-item active":"navigation-item"}}'>
+        <view data-type="0" bindtap="selected">全部</view>
+      </view>
+      <view class='{{select==1?"navigation-item active":"navigation-item"}}'>
+        <view data-type="1" bindtap="selected">表白</view>
+      </view>
+      <view class='{{select==2?"navigation-item active":"navigation-item"}}'>
+        <view data-type="2" bindtap="selected">寻人寻物</view>
+      </view>
+      <view class='{{select==3?"navigation-item active":"navigation-item"}}'>
+        <view data-type="3" bindtap="selected">找搭子</view>
+      </view>
+      <view class='{{select==4?"navigation-item active":"navigation-item"}}'>
+        <view data-type="4" bindtap="selected">美拍</view>
+      </view>
+    </view>
+    <view class='search-container'>
+      <view class='search'>
+        <input type='text' class='search-input' placeholder="搜索" bindinput='getFilter' />
+        <view class='search-image' bindtap='search'>
+          <image mode="" src='/image/index/index-search.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 内容 -->
+  <view class='body-content'>
+    <!-- 话题 -->
+    <view class="topic-content" data-id="{{topic.id}}" wx:if="{{showTopic}}">
+      <view class="topic-title">
+        <view class="title">
+          <view>{{topic.title}}</view>
+        </view>
+      </view>
+      <image class="topic-image" mode="aspectFill" src="{{topic.attachments}}"></image>
+      <view class="topic-data">
+        <view class="topic-data-content">{{topic.content}}</view>
+      </view>
+      <view class="topic-bottom">
+        <view class="topic-bottom-content">
+          <view class="topic-bottom-left">
+            <image src="/image/index/index-eye.png"></image>
+            <view>{{topic.view_number}}次</view>
+          </view>
+          <view class="topic-bottom-middle">
+            <!--是否点赞-->
+            <image wx:if="{{ topic.is_like }}" src="/image/index/index-love-click.png" bindtap="cancelLike" data-obj="{{topic.id}}"></image>
+            <image wx:else="" src="/image/index/index-love.png" bindtap="addLike" data-obj="{{topic.id}}"></image>
+            <view>{{topic.like_number}}</view>
+          </view>
+          <!--评论数量-->
+          <!--0 话题 1表白帖子 2 晒美图-->
+          <view class="topic-bottom-right" data-objtype='2' data-objid="{{topic.id}}" bindtap="showCommentSection">
+            <image src="/image/index/index-comment.png"></image>
+            <view>{{topic.comment_number}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 表白墙flag -->
+    <view class="body-flag" wx:if="{{showTopic}}">
+      <view class="flag">星墙</view>
+      <view class="flag-tab"></view>
+    </view>
+
+    <!-- 表白墙列表 -->
+    <view class="body-list" bindtouchmove="hiddenComment">
+      <view class="body-item" wx:for="{{posts}}" wx:key="index">
+        <view class="item-header">
+          <view class="avatar-item" bindtap="openUserInfo" data-phone="{{item.phone}}">
+            <image class="user-avatar" src="{{item.avatar}}"></image>
+          </view>
+          <view class="nickname-item" bindtap="openUserInfo" data-id="{{item.id}}">
+            <view class="nickname-top">
+              <view class="poster-nickname">{{item.name}}</view>
+              <image src="/image/index/auth_admin.png" wx:if="{{item.authentication_name == 2}}"></image>
+              <image src="/image/index/auth-student.png" wx:if="{{item.authentication_name == 1}}"></image>
+              <image src="/image/index/auth-unkonwn.png" wx:if="{{item.authentication_name == 0}}"></image>
+            </view>
+            <view class="nickname-bottom">
+              <view class="nickname-flag" wx:if="{{item.type == 1}}">@表白</view>
+              <view class="nickname-flag" wx:if="{{item.type == 2}}">@寻人寻物</view>
+              <view class="nickname-flag" wx:if="{{item.type == 3}}">@找搭子</view>
+              <view class="nickname-flag" wx:if="{{item.type == 4}}">@美拍</view>
+            </view>
+          </view>
+          <view class="icon-item">
+            <image src="/image/index/index-delete.png" id="{{item.id}}" wx:if="{{item.can_delete}}" bindtap='deletePost'></image>
+          </view>
+        </view>
+        <view class="item-content">
+          <view class="item-content-word" wx:if="{{item.content}}">{{item.content}}</view>
+          <view class="item-content-image" wx:if='{{item.photos.length>=1}}'>
+            <image mode="aspectFill" wx:for="{{item.photos}}" wx:key="index" wx:for-item="sitem" src="{{sitem}}" bindtap='previewMoreImage' data-obj="{{item.photos}}" id="{{sitem}}"></image>
+          </view>
+        </view>
+        <view class="item-footer">
+          <view class="date">{{item.created_at}}</view>
+          <view class="letter-icon">
+            <image data-objid="{{item.id}}" data-objtype='1' data-objname="{{item.name}}" bindtap='showCommentSection' src="/image/index/index-comment.png"></image>
+            <!--评论显示数量-->
+            <view>{{item.all_comment}}</view>
+          </view>
+          <view class="letter-icon">
+            <image data-obj="{{item.id}}" wx:if="{{!item.is_like}}"   bindtap='praise' src="/image/index/index-like.png"></image>
+          
+            <image data-obj="{{item.id}}" wx:if="{{item.is_like}}"   bindtap='praise' src="/image/index/index-like-click.png"></image>
+            <view>{{item.liker.length}}</view>
+          </view>
+        </view>
+        <!-- 评论 -->
+        <view class="comment-content">
+          <!--点赞-->
+          <view class="praise-content" wx:if="{{item.liker.length > 0}}">
+            <view class="praise-left">
+              <image src="/image/index/index-like.png"></image>
+            </view>
+            <view class="praise-right">
+              <!--评论的头像及昵称显示-->
+              <view class="praise-item" wx:for="{{item.liker}}" wx:key="id">
+                <image src="{{item.avatar}}" bindtap="openUserInfo" data-phone="{{item.phone}}"></image>
+                <view class="praise-name" bindtap="openUserInfo" data-phone="{{item.phone}}">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="comment-content">
+          <!--评论显示-->
+          <view class="comment-list" wx:if="{{item.children.length > 0}}">
+            <view class="comment-left">
+              <image src="/image/index/index-comment.png"></image>
+            </view>
+            <view class="comment-right">
+              <view class="comment-item" wx:if="{{!sub.ref_comment}}" wx:for="{{item.children}}" wx:key="id" wx:for-item="sub" bindtap="{{sub.can_delete?'deleteComment':'commentOtherComment'}}" data-objid="{{item.id}}" data-refid="{{sub.id}}" data-objtype='1'>
+                <image src="{{sub.avatar}}" bindtap="openUserInfo" data-phone="{{sub.phone}}"></image>
+                <view class="comment-name" bindtap="openUserInfo" data-phone="{{sub.phone}}">{{sub.name}}</view>
+                <view class="comment-word">：{{sub.content}}</view>
+              </view>
+
+              <view class="comment-item" wx:if="{{sub.ref_comment}}" wx:for="{{item.children}}" wx:key="id" wx:for-item="sub" bindtap="{{sub.can_delete?'deleteComment':'commentOtherComment'}}" data-objid="{{item.id}}" data-refid="{{sub.id}}" data-objtype='1'>
+                <image src="{{sub.avatar}}" bindtap="openUserInfo" data-phone="{{sub.phone}}"></image>
+                <view class="comment-name" bindtap="openUserInfo" data-phone="{{sub.phone}}">{{sub.name}}</view>
+                <view class="comment-word">回复：</view>
+                <image src="{{item.avatar}}" bindtap="openUserInfo" data-phone="{{item.phone}}"></image>
+                <view class="comment-name" bindtap="openUserInfo" data-phone="{{item.phone}}">{{item.name}}：</view>
+                <view class="comment-word">{{sub.content}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布表白信息 -->
+  <view class='post-container'>
+    <view class='wall'></view>
+    <view class='post'>
+      <image src='/image/index/index-add.png' bindtap='postView'></image>
+    </view>
+  </view>
+
+
+  <!-- 是否显示评论框 -->
+  <comment-section wx:if="{{showComments}}" commentId="{{commentId}}" commentName="{{commentName}}" commentType="{{commentType}}" bind:closeComment="closeComment" />
+
+</view>
